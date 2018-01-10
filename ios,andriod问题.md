@@ -25,7 +25,7 @@ body {
   white-space: nowrap;
 }
 ```
-# 请浮动
+# 清浮动
 ```
 // 清浮动
 .clearfix{
