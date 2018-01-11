@@ -20,7 +20,7 @@ C:\Users\Administrator\Desktop\django3\myapp\migrations\__init__.py
 ```
 > 注意：App名称不能与python默认的模块名冲突 比如 os   
 # 并且添加应用名到 settings.py 里    
-![](md-img/myapp.png) 
+![](../md-img/myapp.png) 
 
 # 学习应用app目录的结构  
 Migrations 数据移植模块 涉及数据库的操作  内容是自动生成的
@@ -54,7 +54,7 @@ urlpatterns = [
 
 # ok!   
 
-![](md-img/h-w.png)
+![](../md-img/h-w.png)
 
 线上seeting.py debug要改为false并加入host
 ```
