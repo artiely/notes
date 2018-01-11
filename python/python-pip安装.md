@@ -2,10 +2,10 @@
 https://pypi.python.org/pypi/pip#downloads
 
 选择下载版本  
-![](md-img/pip.png) 
+![](../md-img/pip.png) 
 
 下载后放到一个文件夹下 解压 
-![](md-img/pip-setup.png)
+![](../md-img/pip-setup.png)
 
 执行命令安装
 ```
@@ -42,7 +42,7 @@ django-admin startproject my-progect
 ```
 
 还可通过pycharm新建django项目
-![](md-img/django-progect.png)  
+![](../md-img/django-progect.png)  
 loction的文件名要一直(pychram版本不同可能有差异)
 # 项目结构
 Manage.py 与项目进行交互的命令行工具集的入口   项目管理器
