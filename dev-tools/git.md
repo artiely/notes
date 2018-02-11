@@ -74,3 +74,10 @@ rm -rf repo.git
 git config --global user.email "你的邮件地址"
 git config --global user.name "你的Github用户名"
 ```
+
+## 如果后面出现无法push的情况
+```
+git pull origin master --allow-unrelated-histories
+# 或者
+git commit -a
+```
