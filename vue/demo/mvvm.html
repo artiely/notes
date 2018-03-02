@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="">
+  <!-- <script src="https://cdn.bootcss.com/vue/2.5.13/vue.js"></script> -->
+</head>
+
+<body>
+  <div id="app">
+    乞丐版双向数据绑定原理
+    <input type="text" id="input">
+    <p id="text"></p>
+  </div>
+  <script>
+    var obj = {}
+    Object.defineProperty(obj, 'myvalue', {
+      get: function () {
+        return obj
+      },
+      set: function (newval) {
+        document.getElementById('input').value = newval
+        document.getElementById('text').innerHTML = newval
+      }
+    })
+    document.getElementById('input').addEventListener('input', function (e) {
+      obj.myvalue = e.target.value
+    })
+  </script>
+</body>
+
+</html>
