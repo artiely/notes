@@ -43,6 +43,7 @@ module.exports = {
   }]
 }
 ```
+
 然后再启动进程
 ```
 pm2 start processes.json
@@ -57,4 +58,45 @@ pm2 reload process.json
 pm2 reload process.json --only api
 ```
 
-未完待续
+## 一键发布
+yml的书写方式(process.yml)
+```
+apps:
+  - script   : server.js
+    name : 'pm2 test'
+    watch  : true
+    env    :
+      NODE_ENV: development
+    env_production:
+      NODE_ENV: production
+deploy :
+  production :
+    user : root
+    key : C:/Windows/SSH-ubuntu.pem  #服务器sshkey(阿里云再服务器镜像创建的时候会生成 然后保存到本地)
+    host : 
+      - 120.78.174.212                #服务器ip
+    port : 22
+    ref : origin/master
+    repo : git@gitee.com:artiely/pm2test.git  #仓库地址
+    path : /www/pm2test/production               #发布地址
+    ssh_options : StrictHostKeyChecking=no       #ssh权限
+    pre-deploy : git fetch --all                 #发布前的操作
+    post-deploy : 'npm install && npm run build && pm2 startOrRestart process.yml --env production'
+    env : 
+      NODE_ENV : production
+```
+第一次发布本地执行
+```
+pm2 deploy process.yml production setup
+```
+然后每次发布只需本地执行如下命令，服务器就会自动拉取创库代码并发布
+```
+pm2 deploy process.yml production
+```
+
+## 注意事项
+github上必须有服务器的公钥和本地的公钥
+
+https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
+
+这里有各个系统生成id_rsa的方法
