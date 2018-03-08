@@ -100,3 +100,31 @@ github上必须有服务器的公钥和本地的公钥
 https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
 
 这里有各个系统生成id_rsa的方法
+
+
+1.服务器node版本尽量使用最高稳定版
+2.devDependencies里的代码在发布时不会被下载安装，如有需要请移动到dependencies
+3.如果出现Host key verification failed.
+解决方案 
+1. 删除~/.ssh/known_hosts 文件中包含"gitlab.xxx.com"这一行的记录
+
+2. 删除~/.ssh/known_hosts整个文件
+
+3. 修改open ssh配置文件，安全级别调低（不推荐，仅限内网等安全级别较高的环境，公网不要使用）
+
+SSH对主机的public_key的检查等级是根据StrictHostKeyChecking变量来配置的。可以通过降低安全级别的方式，来减少这一类提示。 
+
+修改方法： 
+编辑~/.ssh/config（代表个人配置，或/etc/ssh/ssh_config，代表全局配置） 
+添加以下行 
+Shell代码  收藏代码
+StrictHostKeyChecking no  
+UserKnownHostsFile /dev/null  # 为了更简化，把known_hosts也省略掉了  
+
+下面附上StrictHostKeyChecking配置项的说明。 
+StrictHostKeyChecking=no 
+最不安全的级别，当然也没有那么多烦人的提示了，相对安全的内网测试时建议使用。如果连接server的key在本地不存在，那么就自动添加到文件中（默认是known_hosts），并且给出一个警告。 
+StrictHostKeyChecking=ask 
+默认的级别，就是出现刚才的提示了。如果连接和key不匹配，给出提示，并拒绝登录。 
+StrictHostKeyChecking=yes 
+最安全的级别，如果连接与key不匹配，就拒绝连接，不会提示详细信息。 
