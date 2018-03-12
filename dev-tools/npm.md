@@ -26,3 +26,13 @@ yarn config set registry https://registry.npm.taobao.org
 
 
 ***一定注意源地址不能带引号
+
+
+# npm 报发布注意事项
+
+1.如果使用了淘宝源 要切回到默认的npm源 建议使用mrn切换
+
+2.如果发布包的时候提示权限不足（windows） 请使用管理员权限打开cmd 登录npm
+```
+npm login
+```
